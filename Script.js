@@ -212,8 +212,3 @@ var quantumTimer = 0;
   function save() {
     localStorage.setItem("storedBit", bit)
   }
-
-  function join() {
-    localStorage.getItem(storedBit)
-    bit = parseInt(storedBit)
-  }
