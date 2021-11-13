@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title id="title"></title>
+  <link rel="stylesheet" href="Style.css">
+  <script src="Script.js"> </script>
+  <link rel="icon" href="Icon.jpg">
+</head>
+<body onload="join()">
+  <div id= "header" class="noSelect">
+    <p1 onclick="changeBit (1000000000000000)">Welcome To BitClicker</p1>
+  </div>
+  <div id="container" class="noSelect">
+    <p id="bits"><span id="bit"></span>b</p>
+    <p id="addbit" onclick="addBit ()">+<span id="clickValue"></span></p>
+    <div id="filedownload">
+      <p id="upgradeMenu">Download Files</p>
+      <p id="bat"><span id="batCount"></span> .bat Files <span class="price" onclick="buyFile (batPrice, 1)">[<span class="price" id="batPrice"></span>bits]</span></p>
+      <div class="hidden">
+        <h>Produces <span id="batValue"></span>bits every second</h>
+        <p>Output: <span id=batOutput></span>bits per second</p>
+        <p>Produced: <span id=batTotal></span>bits in total</p>
+      </div>
+      <p id="apk"><span id="apkCount"></span> .apk Files <span class="price" onclick="buyFile (apkPrice, 2)">[<span class="price" id="apkPrice"></span>bits]</span></p>
+      <div class="hidden">
+        <h>Produces <span id="apkValue"></span>bits every second</h>
+        <p>Output: <span id=apkOutput></span>bits per second</p>
+        <p>Produced: <span id=apkTotal></span>bits in total</p>
+      </div>
+      <p id="jar"><span id="jarCount"></span> .jar Files <span class="price" onclick="buyFile (jarPrice, 3)">[<span class="price" id="jarPrice"></span>bits]</span></p>
+      <div class="hidden">
+        <h>Produces <span id="jarValue"></span>bits every second</h>
+        <p>Output: <span id=jarOutput></span>bits per second</p>
+        <p>Produced: <span id=jarTotal></span>bits in total</p>
+      </div>
+      <p id="exe"><span id="exeCount"></span> .exe Files <span class="price" onclick="buyFile (exePrice, 4)">[<span class="price" id="exePrice"></span>bits]</span></p>
+      <div class="hidden">
+        <h>Produces <span id="exeValue"></span>bits every second</h>
+        <p>Output: <span id=exeOutput></span>bits per second</p>
+        <p>Produced: <span id=exeTotal></span>bits in total</p>
+      </div>
+    </div>
+    <div id="upgradepc">
+      <p id="upgradeMenu">Buy Pc</p>
+      <p id="mac"><span id="macCount"></span> Macbook <span class="price" onclick="buyPc (macPrice, 1)">[<span class="price" id="macPrice"></span>bits]</span></p>
+      <div class="hidden">
+        <h>Produces <span id="macValue"></span>.bat file every second</h>
+        <p>Output: <span id=macOutput></span> per second</p>
+        <p>Produced: <span id=macTotal></span> in total</p>
+      </div>
+      <p id="potato"><span id="potatoCount"></span> Potato PC <span class="price" onclick="buyPc (potatoPrice, 2)">[<span class="price" id="potatoPrice"></span>bits]</span></p>
+      <div class="hidden">
+        <h>Produces <span id="potatoValue"></span>.apk file every second</h>
+        <p>Output: <span id=potatoOutput></span> per second</p>
+        <p>Produced: <span id=potatoTotal></span> in total</p>
+      </div>
+      <p id="budget"><span id="budgetCount"></span> Budget PC <span class="price" onclick="buyPc (budgetPrice, 3)">[<span class="price" id="budgetPrice"></span>bits]</span></p>
+      <div class="hidden">
+        <h>Produces <span id="budgetValue"></span>.jar file every second</h>
+        <p>Output: <span id=budgetOutput></span> per second</p>
+        <p>Produced: <span id=budgetTotal></span> in total</p>
+      </div>
+      <p id="quantum"><span id="quantumCount"></span> Quantum Computer <span class="price" onclick="buyPc (quantumPrice, 4)">[<span class="price" id="quantumPrice"></span>bits]</span></p>
+      <div class="hidden">
+        <h>Produces <span id="quantumValue"></span>.exe file every second</h>
+        <p>Output: <span id=quantumOutput></span> per second</p>
+        <p>Produced: <span id=quantumTotal></span> in total</p>
+      </div>
+    </div>
+  </div>
+</body>

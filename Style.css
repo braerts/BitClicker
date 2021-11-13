@@ -1,0 +1,156 @@
+@font-face {
+  font-family: standard;
+  src: url(font.otf);
+}
+
+@font-face {
+  font-family: clock;
+  src: url(clock.ttf);
+}
+
+html {
+  background-color: #102010;
+  overflow-y: scroll;
+}
+
+body {
+  color: #50a050;
+  font-family: "standard";
+  width: 100%;
+  padding: 0.5vw;
+  position: fixed;
+  z-index: 2;
+  scroll-behavior: auto;
+}
+
+p {
+  font-size: 1rem
+}
+
+#header {
+  font-size: 3rem;
+  font-weight: bold;
+  padding: 3%;
+  border-bottom: 0.25em double;
+  text-align: center;
+}
+
+#bits {
+  font-size: 4rem;
+  font-family: clock;
+  font-weight: bold;
+  text-align: center;
+}
+
+#addbit {
+  text-align: center;
+  border: 0.25vw solid;
+  padding: 2% 2%;
+  margin: 5%;
+}
+
+.space {
+  margin-top: 6%;
+}
+
+.noSelect {
+  user-select: none;
+}
+
+.price {
+  font-family: clock;
+  font-size: 1.5rem;
+}
+
+.price:hover {
+  border-bottom: 0.1em solid
+}
+
+#filedownload {
+  width: 40em;
+  margin: 3vw;
+  float: left;
+}
+
+#upgradepc {
+  width: 40em;
+  margin: 3vw;
+  float: left;
+}
+
+.hidden {
+  display: none;
+}
+
+/*Hier wordt de informatie weergegeven als je over een van de upgrades hovert*/
+#bat:hover + .hidden {
+  display: block;
+  margin: auto;
+  text-align: left;
+  border: 0.2vw solid;
+  padding-top: 0.5vw;
+  padding-left: 5vw;
+}
+
+#apk:hover + .hidden {
+  display: block;
+  margin: auto;
+  text-align: left;
+  border: 0.2vw solid;
+  padding-top: 0.5vw;
+  padding-left: 5vw;
+}
+
+#jar:hover + .hidden {
+  display: block;
+  margin: auto;
+  text-align: left;
+  border: 0.2vw solid;
+  padding-top: 0.5vw;
+  padding-left: 5vw;
+}
+
+#exe:hover + .hidden {
+  display: block;
+  margin: auto;
+  text-align: left;
+  border: 0.2vw solid;
+  padding-top: 0.5vw;
+  padding-left: 5vw;
+}
+
+#mac:hover + .hidden {
+  display: block;
+  margin: auto;
+  text-align: left;
+  border: 0.2vw solid;
+  padding-top: 0.5vw;
+  padding-left: 5vw;
+}
+
+#potato:hover + .hidden {
+  display: block;
+  margin: auto;
+  text-align: left;
+  border: 0.2vw solid;
+  padding-top: 0.5vw;
+  padding-left: 5vw;
+}
+
+#budget:hover + .hidden {
+  display: block;
+  margin: auto;
+  text-align: left;
+  border: 0.2vw solid;
+  padding-top: 0.5vw;
+  padding-left: 5vw;
+}
+
+#quantum:hover + .hidden {
+  display: block;
+  margin: auto;
+  text-align: left;
+  border: 0.2vw solid;
+  padding-top: 0.5vw;
+  padding-left: 5vw;
+}
