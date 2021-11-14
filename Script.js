@@ -1,8 +1,4 @@
 //Hier worden alle variables gedeclared
-var bit = 0;
-var storedBit = localStorage.getItem("storedBit");
-var clickValue = 0;
-var storedClickValue = localStorage.getItem("storedClickValue");
 var batPrice = 16;
 var batCount = 0;
 var batValue = 1;
@@ -39,6 +35,53 @@ var quantumCount = 0;
 var quantumValue = 1;
 var quantumTotal = 0;
 var quantumTimer = 0;
+
+function onLoad () {
+  if (localStorage.getItem("storedBit") > 0) {
+    bit = parseInt(localStorage.getItem("storedBit"))
+    batPrice = parseInt(localStorage.getItem("storedBatPrice"))
+    batCount = parseInt(localStorage.getItem("storedBatCount"))
+    batValue = parseInt(localStorage.getItem("storedBatValue"))
+    batTotal = parseInt(localStorage.getItem("storedBatTotal"))
+    apkPrice = parseInt(localStorage.getItem("storedApkPrice"))
+    apkCount = parseInt(localStorage.getItem("storedApkCount"))
+    apkValue = parseInt(localStorage.getItem("storedApkValue"))
+    apkTotal = parseInt(localStorage.getItem("storedApkTotal"))
+    jarPrice = parseInt(localStorage.getItem("storedJarPrice"))
+    jarCount = parseInt(localStorage.getItem("storedJarCount"))
+    jarValue = parseInt(localStorage.getItem("storedJarValue"))
+    jarTotal = parseInt(localStorage.getItem("storedJarTotal"))
+    exePrice = parseInt(localStorage.getItem("storedExePrice"))
+    exeCount = parseInt(localStorage.getItem("storedExeCount"))
+    exeValue = parseInt(localStorage.getItem("storedExeValue"))
+    exeTotal = parseInt(localStorage.getItem("storedExeTotal"))
+    macPrice = parseInt(localStorage.getItem("storedMacPrice"))
+    macCount = parseInt(localStorage.getItem("storedMacCount"))
+    macValue = parseInt(localStorage.getItem("storedMacValue"))
+    macTotal = parseInt(localStorage.getItem("storedMacTotal"))
+    macTimer = 0;
+    potatoPrice = parseInt(localStorage.getItem("storedPotatoPrice"))
+    potatoCount = parseInt(localStorage.getItem("storedPotatoCount"))
+    potatoValue = parseInt(localStorage.getItem("storedPotatoValue"))
+    potatoTotal = parseInt(localStorage.getItem("storedPotatoTotal"))
+    potatoTimer = 0;
+    budgetPrice = parseInt(localStorage.getItem("storedBudgetPrice"))
+    budgetCount = parseInt(localStorage.getItem("storedBudgetCount"))
+    budgetValue = parseInt(localStorage.getItem("storedBudgetValue"))
+    budgetTotal = parseInt(localStorage.getItem("storedBudgetTotal"))
+    budgetTimer = 0;
+    quantumPrice = parseInt(localStorage.getItem("storedQuantumPrice"))
+    quantumCount = parseInt(localStorage.getItem("storedQuantumCount"))
+    quantumValue = parseInt(localStorage.getItem("storedQuantumValue"))
+    quantumTotal = parseInt(localStorage.getItem("storedQuantumTotal"))
+    quantumTimer = 0;
+  }
+  else {
+    restart()
+  }
+}
+
+
   //Hier vind je de functions
   function addBit () {
     bit = bit + clickValue;
@@ -86,7 +129,6 @@ var quantumTimer = 0;
       for (i=0;i<macCount;i++) {
         if (macTimer >= 20) {
           batCount = batCount + 1
-          batPrice = Math.round(batPrice * 1.05)
           macTimer = 0}
         else {
           macTimer ++
@@ -95,7 +137,6 @@ var quantumTimer = 0;
       for (i=0;i<potatoCount;i++) {
         if (potatoTimer >= 20) {
           apkCount = apkCount + 1
-          apkPrice = Math.round(apkPrice * 1.05)
           potatoTimer = 0}
         else {
           potatoTimer ++
@@ -104,7 +145,6 @@ var quantumTimer = 0;
       for (i=0;i<budgetCount;i++) {
         if (budgetTimer >= 20) {
           jarCount = jarCount + 1
-          jarPrice = Math.round(jarPrice * 1.05)
           budgetTimer = 0}
         else {
           budgetTimer ++
@@ -113,7 +153,6 @@ var quantumTimer = 0;
       for (i=0;i<quantumCount;i++) {
         if (quantumTimer >= 20) {
           exeCount = exeCount + 1
-          exePrice = Math.round(exePrice * 1.05)
           quantumTimer = 0}
         else {
           quantumTimer ++
@@ -176,11 +215,7 @@ var quantumTimer = 0;
     document.getElementById("quantumCount").innerHTML = Math.round(quantumCount)
     document.getElementById("quantumValue").innerHTML = bitConvert(quantumValue)
     document.getElementById("quantumOutput").innerHTML = bitConvert(quantumValue * quantumCount)
-
-    //Deze forloop activeert 1 keer in de minuut en saved dan je game data
-    for (i=0;i<120;i++) {
-      save()
-    }
+    save()
   }, 50)
 
   //Deze function rekent de standaard Bit einheid om in kilobits tot petabits
@@ -209,6 +244,80 @@ var quantumTimer = 0;
     return Math.round(temp) + " "
   }
 
+  //Deze function slaat playerdata op voor mensen met de html file
   function save() {
     localStorage.setItem("storedBit", bit)
+    localStorage.setItem("storedBatPrice", batPrice)
+    localStorage.setItem("storedBatPrice", batPrice)
+    localStorage.setItem("storedBatCount", batCount)
+    localStorage.setItem("storedBatValue", batValue)
+    localStorage.setItem("storedBatTotal", batTotal)
+    localStorage.setItem("storedApkPrice", apkPrice)
+    localStorage.setItem("storedApkCount", apkCount)
+    localStorage.setItem("storedApkValue", apkValue)
+    localStorage.setItem("storedApkTotal", apkTotal)
+    localStorage.setItem("storedJarPrice", jarPrice)
+    localStorage.setItem("storedJarCount", jarCount)
+    localStorage.setItem("storedJarValue", jarValue)
+    localStorage.setItem("storedJarTotal", jarTotal)
+    localStorage.setItem("storedExePrice", exePrice)
+    localStorage.setItem("storedExeCount", exeCount)
+    localStorage.setItem("storedExeValue", exeValue)
+    localStorage.setItem("storedExeTotal", exeTotal)
+    localStorage.setItem("storedMacPrice", macPrice)
+    localStorage.setItem("storedMacCount", macCount)
+    localStorage.setItem("storedMacValue", macValue)
+    localStorage.setItem("storedMacTotal", macTotal)
+    localStorage.setItem("storedPotatoPrice", potatoPrice)
+    localStorage.setItem("storedPotatoCount", potatoCount)
+    localStorage.setItem("storedPotatoValue", potatoValue)
+    localStorage.setItem("storedPotatoTotal", potatoTotal)
+    localStorage.setItem("storedBudgetPrice", budgetPrice)
+    localStorage.setItem("storedBudgetCount", budgetCount)
+    localStorage.setItem("storedBudgetValue", budgetValue)
+    localStorage.setItem("storedBudgetTotal", budgetTotal)
+    localStorage.setItem("storedQuantumPrice", quantumPrice)
+    localStorage.setItem("storedQuantumCount", quantumCount)
+    localStorage.setItem("storedQuantumValue", quantumValue)
+    localStorage.setItem("storedQuantumTotal", quantumTotal)
+  }
+
+  function restart() {
+    bit = 0;
+    batPrice = 16;
+    batCount = 0;
+    batValue = 1;
+    batTotal = 0;
+    apkPrice = 128;
+    apkCount = 0;
+    apkValue = 8;
+    apkTotal = 0;
+    jarPrice = 1024;
+    jarCount = 0;
+    jarValue = 64;
+    jarTotal = 0;
+    exePrice = 8192;
+    exeCount = 0;
+    exeValue = 512;
+    exeTotal = 0;
+    macPrice = 268435456;
+    macCount = 0;
+    macValue = 1;
+    macTotal = 0;
+    macTimer = 0;
+    potatoPrice = 524288;
+    potatoCount = 0;
+    potatoValue = 1;
+    potatoTotal = 0;
+    potatoTimer = 0;
+    budgetPrice = 4194304;
+    budgetCount = 0;
+    budgetValue = 1;
+    budgetTotal = 0;
+    budgetTimer = 0;
+    quantumPrice = 1073741824;
+    quantumCount = 0;
+    quantumValue = 1;
+    quantumTotal = 0;
+    quantumTimer = 0;
   }
