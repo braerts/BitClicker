@@ -15,6 +15,9 @@ var exePrice = 8192;
 var exeCount = 0;
 var exeValue = 512;
 var exeTotal = 0;
+var virusCount = 0;
+var virusValue = 512;
+var virusTotal = 0;
 var macPrice = 268435456;
 var macCount = 0;
 var macValue = 1;
@@ -30,7 +33,7 @@ var budgetCount = 0;
 var budgetValue = 1;
 var budgetTotal = 0;
 var budgetTimer = 0;
-var quantumPrice = 1073741824;
+var quantumPrice = 41943040;
 var quantumCount = 0;
 var quantumValue = 1;
 var quantumTotal = 0;
@@ -55,6 +58,9 @@ function onLoad () {
     exeCount = parseInt(localStorage.getItem("storedExeCount"))
     exeValue = parseInt(localStorage.getItem("storedExeValue"))
     exeTotal = parseInt(localStorage.getItem("storedExeTotal"))
+    virusCount = parseInt(localStorage.getItem("storedVirusCount"))
+    virusValue = parseInt(localStorage.getItem("storedVirusValue"))
+    virusTotal = parseInt(localStorage.getItem("storedVirusTotal"))
     macPrice = parseInt(localStorage.getItem("storedMacPrice"))
     macCount = parseInt(localStorage.getItem("storedMacCount"))
     macValue = parseInt(localStorage.getItem("storedMacValue"))
@@ -104,6 +110,12 @@ function onLoad () {
       else if (name == 4){
         exeCount ++
         exePrice = Math.round(exePrice * 1.15)}
+      else if (name == 5){
+        if (virusCount >= 1){
+          virusCount = 0}
+          bit = bit - Math.round(Math.floor(bit) / 100)}}
+        else {
+          virusCount = 0
     }
   }
   function buyPc (price, name){
@@ -160,59 +172,67 @@ function onLoad () {
   }
   //Dit is de game loop die elke 0.05 Seconde afgaat
   setInterval (function (){
-    bit = bit + batCount * batValue / 20 + apkCount * apkValue / 20 + jarCount * jarValue / 20 + exeCount * exeValue / 20
+    bit = bit + batCount * batValue / 20 + apkCount * apkValue / 20 + jarCount * jarValue / 20 + exeCount * exeValue / 20 - virusCount * virusValue / 20
     batTotal = batTotal + batCount * batValue / 20
     apkTotal = apkTotal + apkCount * apkValue / 20
     jarTotal = jarTotal + jarCount * jarValue / 20
     exeTotal = exeTotal + exeCount * exeValue / 20
+    virusTotal = virusTotal + virusCount * virusValue / 20
     clickValue = Math.round(1 + batValue * batCount * 0.2 + apkValue * apkCount * 0.2 + jarValue * jarCount * 0.2 + exeValue * exeCount * 0.2)
     compute (mac)
     compute (potato)
     compute (budget)
     compute (quantum)
-
+    if (bit < 0) {
+      bit = 0
+    }
     //Dit stuurt JS code door naar Index.html
     document.getElementById("title").innerHTML = bitConvert(Math.round(bit)) + "Bits - BitClicker"
     document.getElementById("bit").innerHTML = bitConvert(Math.round(bit))
     document.getElementById("clickValue").innerHTML = bitConvert(clickValue)
     document.getElementById("batPrice").innerHTML = bitConvert(batPrice)
     document.getElementById("batTotal").innerHTML = bitConvert(batTotal)
-    document.getElementById("batCount").innerHTML = Math.round(batCount)
+    document.getElementById("batCount").innerHTML = bitConvert(Math.round(batCount))
     document.getElementById("batValue").innerHTML = bitConvert(batValue)
     document.getElementById("batOutput").innerHTML = bitConvert(batValue * batCount)
     document.getElementById("apkPrice").innerHTML = bitConvert(apkPrice)
     document.getElementById("apkTotal").innerHTML = bitConvert(apkTotal)
-    document.getElementById("apkCount").innerHTML = Math.round(apkCount)
+    document.getElementById("apkCount").innerHTML = bitConvert(Math.round(apkCount))
     document.getElementById("apkValue").innerHTML = bitConvert(apkValue)
     document.getElementById("apkOutput").innerHTML = bitConvert(apkValue * apkCount)
     document.getElementById("jarPrice").innerHTML = bitConvert(jarPrice)
     document.getElementById("jarTotal").innerHTML = bitConvert(jarTotal)
-    document.getElementById("jarCount").innerHTML = Math.round(jarCount)
+    document.getElementById("jarCount").innerHTML = bitConvert(Math.round(jarCount))
     document.getElementById("jarValue").innerHTML = bitConvert(jarValue)
     document.getElementById("jarOutput").innerHTML = bitConvert(jarValue * jarCount)
     document.getElementById("exePrice").innerHTML = bitConvert(exePrice)
     document.getElementById("exeTotal").innerHTML = bitConvert(exeTotal)
-    document.getElementById("exeCount").innerHTML = Math.round(exeCount)
+    document.getElementById("exeCount").innerHTML = bitConvert(Math.round(exeCount))
     document.getElementById("exeValue").innerHTML = bitConvert(exeValue)
     document.getElementById("exeOutput").innerHTML = bitConvert(exeValue * exeCount)
+    document.getElementById("virusPrice").innerHTML = bitConvert(bit / 100)
+    document.getElementById("virusTotal").innerHTML = bitConvert(virusTotal)
+    document.getElementById("virusCount").innerHTML = bitConvert(Math.round(virusCount))
+    document.getElementById("virusValue").innerHTML = bitConvert(virusValue)
+    document.getElementById("virusOutput").innerHTML = bitConvert(virusValue * virusCount)
     document.getElementById("macPrice").innerHTML = bitConvert(macPrice)
     document.getElementById("macTotal").innerHTML = bitConvert(macTotal)
-    document.getElementById("macCount").innerHTML = Math.round(macCount)
+    document.getElementById("macCount").innerHTML = bitConvert(Math.round(macCount))
     document.getElementById("macValue").innerHTML = bitConvert(macValue)
     document.getElementById("macOutput").innerHTML = bitConvert(macValue * macCount)
     document.getElementById("potatoPrice").innerHTML = bitConvert(potatoPrice)
     document.getElementById("potatoTotal").innerHTML = bitConvert(potatoTotal)
-    document.getElementById("potatoCount").innerHTML = Math.round(potatoCount)
+    document.getElementById("potatoCount").innerHTML = bitConvert(Math.round(potatoCount))
     document.getElementById("potatoValue").innerHTML = bitConvert(potatoValue)
     document.getElementById("potatoOutput").innerHTML = bitConvert(potatoValue * potatoCount)
     document.getElementById("budgetPrice").innerHTML = bitConvert(budgetPrice)
     document.getElementById("budgetTotal").innerHTML = bitConvert(budgetTotal)
-    document.getElementById("budgetCount").innerHTML = Math.round(budgetCount)
+    document.getElementById("budgetCount").innerHTML = bitConvert(Math.round(budgetCount))
     document.getElementById("budgetValue").innerHTML = bitConvert(budgetValue)
     document.getElementById("budgetOutput").innerHTML = bitConvert(budgetValue * macCount)
     document.getElementById("quantumPrice").innerHTML = bitConvert(quantumPrice)
     document.getElementById("quantumTotal").innerHTML = bitConvert(quantumTotal)
-    document.getElementById("quantumCount").innerHTML = Math.round(quantumCount)
+    document.getElementById("quantumCount").innerHTML = bitConvert(Math.round(quantumCount))
     document.getElementById("quantumValue").innerHTML = bitConvert(quantumValue)
     document.getElementById("quantumOutput").innerHTML = bitConvert(quantumValue * quantumCount)
     save()
@@ -264,6 +284,9 @@ function onLoad () {
     localStorage.setItem("storedExeCount", exeCount)
     localStorage.setItem("storedExeValue", exeValue)
     localStorage.setItem("storedExeTotal", exeTotal)
+    localStorage.setItem("storedVirusCount", virusCount)
+    localStorage.setItem("storedVirusValue", virusValue)
+    localStorage.setItem("storedVirusTotal", virusTotal)
     localStorage.setItem("storedMacPrice", macPrice)
     localStorage.setItem("storedMacCount", macCount)
     localStorage.setItem("storedMacValue", macValue)
@@ -300,6 +323,9 @@ function onLoad () {
     exeCount = 0;
     exeValue = 512;
     exeTotal = 0;
+    virusCount = 0;
+    virusValue = 512;
+    virusTotal = 0;
     macPrice = 268435456;
     macCount = 0;
     macValue = 1;
@@ -315,7 +341,7 @@ function onLoad () {
     budgetValue = 1;
     budgetTotal = 0;
     budgetTimer = 0;
-    quantumPrice = 1073741824;
+    quantumPrice = 41943040;
     quantumCount = 0;
     quantumValue = 1;
     quantumTotal = 0;

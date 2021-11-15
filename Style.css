@@ -129,6 +129,15 @@ footer {
   padding-left: 5vw;
 }
 
+#virus:hover + .hidden {
+  display: block;
+  margin: auto;
+  text-align: left;
+  border: 0.2vw solid;
+  padding-top: 0.5vw;
+  padding-left: 5vw;
+}
+
 #mac:hover + .hidden {
   display: block;
   margin: auto;
