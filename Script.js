@@ -38,7 +38,10 @@ var quantumCount = 0;
 var quantumValue = 1;
 var quantumTotal = 0;
 var quantumTimer = 0;
+var playtime = 0;
+var tick = 20;
 
+//Deze function wordt gerunned zodra de html pagina wordt geopent of gerefreshed
 function onLoad () {
   if (localStorage.getItem("storedBit") > 0) {
     bit = parseInt(localStorage.getItem("storedBit"))
@@ -81,6 +84,8 @@ function onLoad () {
     quantumValue = parseInt(localStorage.getItem("storedQuantumValue"))
     quantumTotal = parseInt(localStorage.getItem("storedQuantumTotal"))
     quantumTimer = 0;
+    playtime = parseInt(localStorage.getItem("storedPlaytime"))
+    var tick = 20;
   }
   else {
     restart()
@@ -139,7 +144,7 @@ function onLoad () {
   function compute (type) {
     if (type == mac) {
       for (i=0;i<macCount;i++) {
-        if (macTimer >= 20) {
+        if (macTimer >= tick) {
           batCount = batCount + 1
           macTimer = 0}
         else {
@@ -147,7 +152,7 @@ function onLoad () {
     }}}
     else if (type == potato) {
       for (i=0;i<potatoCount;i++) {
-        if (potatoTimer >= 20) {
+        if (potatoTimer >= tick) {
           apkCount = apkCount + 1
           potatoTimer = 0}
         else {
@@ -155,7 +160,7 @@ function onLoad () {
     }}}
     else if (type == budget) {
       for (i=0;i<budgetCount;i++) {
-        if (budgetTimer >= 20) {
+        if (budgetTimer >= tick) {
           jarCount = jarCount + 1
           budgetTimer = 0}
         else {
@@ -163,7 +168,7 @@ function onLoad () {
     }}}
     else if (type == quantum) {
       for (i=0;i<quantumCount;i++) {
-        if (quantumTimer >= 20) {
+        if (quantumTimer >= tick) {
           exeCount = exeCount + 1
           quantumTimer = 0}
         else {
@@ -172,12 +177,13 @@ function onLoad () {
   }
   //Dit is de game loop die elke 0.05 Seconde afgaat
   setInterval (function (){
-    bit = bit + batCount * batValue / 20 + apkCount * apkValue / 20 + jarCount * jarValue / 20 + exeCount * exeValue / 20 - virusCount * virusValue / 20
-    batTotal = batTotal + batCount * batValue / 20
-    apkTotal = apkTotal + apkCount * apkValue / 20
-    jarTotal = jarTotal + jarCount * jarValue / 20
-    exeTotal = exeTotal + exeCount * exeValue / 20
-    virusTotal = virusTotal + virusCount * virusValue / 20
+    bit = bit + batCount * batValue / tick + apkCount * apkValue / tick + jarCount * jarValue / tick + exeCount * exeValue / tick
+    batTotal = batTotal + batCount * batValue / tick
+    apkTotal = apkTotal + apkCount * apkValue / tick
+    jarTotal = jarTotal + jarCount * jarValue / tick
+    exeTotal = exeTotal + exeCount * exeValue / tick
+    virusCount = virusCount + clickValue / 1024
+    virusTotal = virusTotal + virusCount * virusValue / tick
     clickValue = Math.round(1 + batValue * batCount * 0.2 + apkValue * apkCount * 0.2 + jarValue * jarCount * 0.2 + exeValue * exeCount * 0.2)
     compute (mac)
     compute (potato)
@@ -186,6 +192,7 @@ function onLoad () {
     if (bit < 0) {
       bit = 0
     }
+    playtime ++
     //Dit stuurt JS code door naar Index.html
     document.getElementById("title").innerHTML = bitConvert(Math.round(bit)) + "Bits - BitClicker"
     document.getElementById("bit").innerHTML = bitConvert(Math.round(bit))
@@ -210,11 +217,11 @@ function onLoad () {
     document.getElementById("exeCount").innerHTML = bitConvert(Math.round(exeCount))
     document.getElementById("exeValue").innerHTML = bitConvert(exeValue)
     document.getElementById("exeOutput").innerHTML = bitConvert(exeValue * exeCount)
-    document.getElementById("virusPrice").innerHTML = bitConvert(bit / 100)
-    document.getElementById("virusTotal").innerHTML = bitConvert(virusTotal)
-    document.getElementById("virusCount").innerHTML = bitConvert(Math.round(virusCount))
-    document.getElementById("virusValue").innerHTML = bitConvert(virusValue)
-    document.getElementById("virusOutput").innerHTML = bitConvert(virusValue * virusCount)
+//    document.getElementById("virusPrice").innerHTML = bitConvert(bit / 100)
+//    document.getElementById("virusTotal").innerHTML = bitConvert(virusTotal)
+//    document.getElementById("virusCount").innerHTML = bitConvert(Math.round(virusCount))
+//    document.getElementById("virusValue").innerHTML = bitConvert(virusValue)
+//    document.getElementById("virusOutput").innerHTML = bitConvert(virusValue * virusCount)
     document.getElementById("macPrice").innerHTML = bitConvert(macPrice)
     document.getElementById("macTotal").innerHTML = bitConvert(macTotal)
     document.getElementById("macCount").innerHTML = bitConvert(Math.round(macCount))
@@ -235,6 +242,7 @@ function onLoad () {
     document.getElementById("quantumCount").innerHTML = bitConvert(Math.round(quantumCount))
     document.getElementById("quantumValue").innerHTML = bitConvert(quantumValue)
     document.getElementById("quantumOutput").innerHTML = bitConvert(quantumValue * quantumCount)
+    document.getElementById("playtime").innerHTML = Math.floor(playtime / (60 * tick))
     save()
   }, 50)
 
@@ -303,6 +311,7 @@ function onLoad () {
     localStorage.setItem("storedQuantumCount", quantumCount)
     localStorage.setItem("storedQuantumValue", quantumValue)
     localStorage.setItem("storedQuantumTotal", quantumTotal)
+    localStorage.setItem("storedPlaytime", playtime)
   }
 
   function restart() {
@@ -346,4 +355,6 @@ function onLoad () {
     quantumValue = 1;
     quantumTotal = 0;
     quantumTimer = 0;
+    playtime = 0;
+    tick = 20;
   }

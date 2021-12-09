@@ -11,9 +11,11 @@
     <p1 onclick="changeBit (1000000)">Welcome To BitClicker</p1>
     <p onclick="restart ()" id="underLine">click here to restart</p>
     <div class="hidden">
-      <h><span id="playtime"></span> Seconds</h>
+      <h><span id="playtime"></span> Minutes</h>
     </div>
   </div>
+
+<!-- Hier vindt je de files die bits generaten//-->
   <div id="container" class="noSelect">
     <p id="bits"><span id="bit"></span>b</p>
     <p id="addbit" onclick="addBit ()">+<span id="clickValue"></span></p>
@@ -43,12 +45,14 @@
         <p>Output: <span id=exeOutput></span>bits per second</p>
         <p>Produced: <span id=exeTotal></span>bits in total</p>
       </div>
-      <p id="virus"><span id="virusCount"></span>Remove all virus Files  <span class="price" onclick="buyFile (bit / 100, 5)">[<span class="price" id="virusPrice"></span>bits]</span></p>
+<!--<p id="virus"><span id="virusCount"></span>Remove all virus Files  <span class="price" onclick="buyFile (bit / 100, 5)">[<span class="price" id="virusPrice"></span>bits]</span></p>
       <div class="hidden">
         <h>Steals <span id="virusValue"></span>bits every second</h>
         <p>Output: <span id=virusOutput></span>bits stolen per second</p>
         <p>Stolen: <span id=virusTotal></span>bits stolen in total</p>
-      </div>
+      </div> //-->
+
+<!-- Hier vindt je alle upgrades voor je "PC"//-->
     </div>
     <div id="upgradepc">
       <p id="upgradeMenu">Buy Pc</p>

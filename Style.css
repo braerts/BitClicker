@@ -173,3 +173,11 @@ footer {
   padding-top: 0.5vw;
   padding-left: 5vw;
 }
+
+#underLine:hover + .hidden {
+  font-size: 1vw;
+  display: block;
+  margin: auto;
+  text-align: center;
+  padding-top: 0.5vw;
+}
