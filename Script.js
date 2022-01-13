@@ -96,6 +96,8 @@ function onLoad () {
   //Hier vind je de functions
   function addBit () {
     bit = bit + clickValue;
+    var audio = new Audio('sfx/Click.wav');
+    audio.play();
   }
   function changeBit (amount) {
     bit = bit + amount;
@@ -115,20 +117,24 @@ function onLoad () {
       else if (name == 4){
         exeCount ++
         exePrice = Math.round(exePrice * 1.15)}
-      else if (name == 5){
-        if (virusCount >= 1){
-          virusCount = 0}
-          bit = bit - Math.round(Math.floor(bit) / 100)}}
-        else {
-          virusCount = 0
+//      else if (name == 5){
+//        if (virusCount >= 1){
+//          virusCount = 0}
+//          bit = bit - Math.round(Math.floor(bit) / 100)}}
+//        else {
+//          virusCount = 0
+      var audio = new Audio('sfx/Upgrade.wav');
+      audio.play();
     }
   }
   function buyPc (price, name){
+    var audio = new Audio('sfx/Achievement.wav');
     if (bit >= price){
       bit = bit - price
       if (name == 1){
         macCount ++
-        macPrice = Math.round(macPrice * 1.1)}
+        macPrice = Math.round(macPrice * 1.1)
+        var audio = new Audio('sfx/Mac.wav')}
       if (name == 2){
         potatoCount ++
         potatoPrice = Math.round(potatoPrice * 1.1)}
@@ -138,6 +144,7 @@ function onLoad () {
       if (name == 4){
         quantumCount ++
         quantumPrice = Math.round(quantumPrice * 1.1)}
+      audio.play();
     }
   }
   //De function Compute berekent hoeveel files je er iedere seconde bij krijgt, hoeveel deze hierna kosten, en past deze direct aan
